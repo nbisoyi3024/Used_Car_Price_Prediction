@@ -1,0 +1,5 @@
+# Ignore large datasets
+data/cars.csv
+data/cars_cleaned.csv
+data/cars_featured.csv
+data/cars_model.csv
