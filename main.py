@@ -66,9 +66,6 @@ def run_pipeline():
         save_path = os.path.join(MODEL_PATH, f"{best_model_name}_best_model.pkl")
         save_model(best_model, save_path)
 
-        # Load the model
-       # best_pipeline = load_model(save_path)
-
         print(f"Best model saved: {best_model_name} with R2 = {results[best_model_name]['R2']:.4f}")
         print("Pipeline completed successfully!")
 

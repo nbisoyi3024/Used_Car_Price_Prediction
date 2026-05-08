@@ -32,11 +32,6 @@ def preprocess_pipeline(path):
     X = df[features]
     y = df['Price_log']     #raw price
 
-    print(y.head())
-
-    # apply log transform
-    #y_log = np.log1p(y)
-
     # Split into train and test sets
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42

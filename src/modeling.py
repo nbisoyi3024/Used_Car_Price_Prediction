@@ -1,4 +1,7 @@
 import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn.model_selection import cross_val_score
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
@@ -9,6 +12,8 @@ import joblib
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score, root_mean_squared_error
 import os
 import warnings
+from notebooks import eda_plots
+
 warnings.filterwarnings("ignore", category=UserWarning, module="lightgbm")
 
 
@@ -134,5 +139,43 @@ def evaluate_models(models, X_test, y_test):
                     "MSE": mean_squared_error(y_true, y_pred),
                     "RMSE": root_mean_squared_error(y_true, y_pred)
                 }
+                #feature importance
+                # ---------------- FEATURE IMPORTANCE ----------------
+                try:
+                    if name == "LightGBM":
+                        model_obj = model.named_steps["lgb_model"]
+                        feature_names = model.named_steps["preprocess"].get_feature_names_out()
+
+                    elif name == "CB":
+                        model_obj = model.named_steps["cb_model"]
+                        feature_names = X_test.columns
+
+                    else:
+                        return
+
+                    importance = model_obj.feature_importances_
+
+                    feat_imp = (
+                        pd.DataFrame({
+                            "Feature": feature_names,
+                            "Importance": importance
+                        })
+                        .sort_values("Importance", ascending=False)
+                        .head(15)
+                    )
+                    #folder path
+                    save_dir = "notebooks/eda_plots"
+                    os.makedirs(save_dir, exist_ok=True)
+
+                    plt.figure(figsize=(10, 6))
+                    sns.barplot(data=feat_imp, x="Importance", y="Feature")
+                    plt.title(f"{name} Feature Importance")
+                    plt.tight_layout()
+
+                    plt.savefig(f"{save_dir}/{name.lower()}_feature_importance.png")
+                    plt.close()
+
+                except Exception as e:
+                    print(f"Feature importance failed for {name}: {e}")
 
             return results

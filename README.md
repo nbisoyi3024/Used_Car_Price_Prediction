@@ -35,19 +35,30 @@ Some features have missing values: e.g., mpg (18.6%), seller_rating (28%), price
 
 * Extracted numeric features from Engine (Engine_Size) and MPG (Mpg_Clean).
 
+### Exploratory Data Analysis
 #### Target Variable Analysis: Price
+
+![Target Distribution](notebooks/eda_plots/price_distribution.png)
+
+![Price outliers](notebooks/eda_plots/price_outliers.png)
+
+![Price Log distibution](notebooks/eda_plots/price_log_distribution.png)
 
 * Original Price highly right-skewed (skew ≈ 613) with extreme outliers.
 * Extreme values were removed using IQR method; prices filtered between $1k–$69k.
 * Applied log transformation (Price_log) to reduce skewness and stabilize variance.
 * Log-transformed price distribution is now more symmetric, suitable for modeling.
 
-### Exploratory Data Analysis
 #### Categorical Features
 * Analyzed key categorical features: Manufacturer, Fuel Type, Transmission_clean, and Drivetrain using count plots and bar plots.
 * Focused on top categories to avoid clutter and improve readability.
 
 #### Numerical Features
+
+![Feature Distribution](eda_plot/mileage_vs_price.png)
+
+![Feature Distribution](eda_plot/year_vs_price.png)
+
 * Distribution & outliers explored for:
 ['Mileage','Vehicle_Age','Mileage_per_Year','Mpg_Clean','Engine_Size','Driver_Reviews_Num']
 
@@ -55,6 +66,9 @@ Some features have missing values: e.g., mpg (18.6%), seller_rating (28%), price
 * Vehicle_Age_log, Mileage_per_Year_log, Driver_Reviews_Num_log
 
 #### Categorical feature vs price
+#### Brand Price Comparison
+![Brand Price Comparison](notebooks/eda_plots/brand_price_comparison.png)
+
 Count and average price plots for:
 ['Manufacturer','Fuel Type','Transmission_clean','Drivetrain']
 
@@ -62,6 +76,8 @@ Count and average price plots for:
 * Ford and Toyota dominate dataset.
 
 #### Correlations
+
+![Correlation Heatmap](eda_plots/correlation_heatmap.png)
 
 **Strongest negative correlations with price**: Mileage (-0.66), Vehicle_Age (-0.54)
 
@@ -106,7 +122,7 @@ On the original dataset, the models achieved the following results:
   - R² Score: ~0.70
 - **LightGBM**
   - R² Score: ~0.75
-  - 
+
 #### Training with Sample Dataset (50,000 Records)
 To improve training efficiency and experiment with scalability, a sampled dataset of 50,000 records was used.
 
