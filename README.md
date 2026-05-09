@@ -55,9 +55,9 @@ Some features have missing values: e.g., mpg (18.6%), seller_rating (28%), price
 
 #### Numerical Features
 
-![Feature Distribution](eda_plot/mileage_vs_price.png)
+![Feature Distribution](notebooks/eda_plot/mileage_vs_price.png)
 
-![Feature Distribution](eda_plot/year_vs_price.png)
+![Feature Distribution](notebooks/eda_plot/year_vs_price.png)
 
 * Distribution & outliers explored for:
 ['Mileage','Vehicle_Age','Mileage_per_Year','Mpg_Clean','Engine_Size','Driver_Reviews_Num']
@@ -77,7 +77,7 @@ Count and average price plots for:
 
 #### Correlations
 
-![Correlation Heatmap](eda_plots/correlation_heatmap.png)
+![Correlation Heatmap](notebooks/eda_plots/correlation_heatmap.png)
 
 **Strongest negative correlations with price**: Mileage (-0.66), Vehicle_Age (-0.54)
 

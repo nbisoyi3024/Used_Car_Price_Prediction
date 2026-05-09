@@ -8,6 +8,7 @@ data/cars_model.csv
 
 # python cache
 __pycache__/
+__pycache__
 *.pyc
 
 # catboost logs
@@ -15,3 +16,5 @@ catboost_info/
 
 # optional heavy files
 notebooks/eda_plots/
+
+.idea
