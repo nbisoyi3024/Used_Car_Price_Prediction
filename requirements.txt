@@ -13,3 +13,6 @@ seaborn>=0.12.2
 
 # Web app
 streamlit>=1.55.0
+
+#Google cloud storage
+google-cloud-storage

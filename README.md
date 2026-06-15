@@ -168,6 +168,18 @@ After preprocessing improvements, feature engineering, and cross-validation tuni
 - Best model: LightGBM  
 - Saved using Joblib for deployment
 
+## Cloud Storage Integration
+
+The trained model is stored in **Google Cloud Storage** and loaded 
+at runtime — demonstrating cloud-based model serving instead of 
+relying on local files only.
+
+### How it works
+1. Trained model (`LightGBM_best_model.pkl`) uploaded to a GCS bucket
+2. `load_model_from_gcs()` in `src/utils.py` downloads and loads 
+   the model when the app starts
+3. Authenticated using Google Cloud Application Default Credentials (ADC)
+
 ##### Key Insights
 
 * Mileage and vehicle age are strongest predictors of price.
@@ -204,6 +216,8 @@ Built an interactive web app for real-time predictions.
 
 #### Output:
 Predicted car resale price
+![Streamlit_output](screenshot/streamlit_ui.png)
+
 
 #### Tech Stack
 * Python
@@ -213,6 +227,7 @@ Predicted car resale price
 * Matplotlib, Seaborn
 * Streamlit
 * Joblib
+* Google Cloud Storage (GCS)
 
 #### Project Structure
 UsedCarPricePrediction/
@@ -264,7 +279,10 @@ pip install -r requirements.txt
 models/LightGBM_best_model.pkl
 4. python main.py 
 5. streamlit run app.py
+> **Note:** Step 5 loads the model from Google Cloud Storage 
+> (see Cloud Storage Integration section below). To run this  
+> yourself requires your own GCS bucket and credentials.
 
 
 Niharika Bisoyi
-ML Enthusiast
+ML/AI  Engineer
